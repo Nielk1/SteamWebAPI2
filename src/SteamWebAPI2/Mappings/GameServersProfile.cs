@@ -40,6 +40,14 @@ namespace SteamWebAPI2.Mappings
             );
 
             CreateMap<QueryLoginTokenResponse, QueryLoginTokenModel>();
+
+
+            CreateMap<GetServerListContainer, GetServerListResponse>().ConvertUsing(
+                src => src.Response
+            );
+            CreateMap<GetServerListResponse, GetServerListModel>()
+                .ForMember(dest => dest.Servers, opts => opts.MapFrom(src => src.Servers));
+            CreateMap<GetServerResponse, GetServerModel>();
         }
     }
 }

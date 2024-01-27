@@ -1,5 +1,7 @@
 ﻿using Steam.Models.GameServers;
+using SteamWebAPI2.Models.GameServers;
 using SteamWebAPI2.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,5 +26,9 @@ namespace SteamWebAPI2.Interfaces
         Task<ISteamWebResponse<dynamic>> GetServerSteamIDsByIPAsync(IReadOnlyCollection<string> serverIPs);
 
         Task<ISteamWebResponse<dynamic>> GetServerIPsBySteamIDAsync(IReadOnlyCollection<ulong> steamIds);
+
+        // broken mapper issues
+        //Task<ISteamWebResponse<GetServerListModel>> GetServerListAsync(string filter, UInt32? limit);
+        Task<ISteamWebResponse<GetServerListContainer>> GetServerListAsync(string filter, UInt32? limit);
     }
 }

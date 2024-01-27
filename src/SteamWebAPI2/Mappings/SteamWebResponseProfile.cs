@@ -84,7 +84,7 @@ namespace SteamWebAPI2.Mappings
             CreateSteamWebResponseMap<AccountPublicInfoContainer, AccountPublicInfoModel>();
             CreateSteamWebResponseMap<QueryLoginTokenContainer, QueryLoginTokenModel>();
             CreateSteamWebResponseMap<TradeHoldDurationsResultContainer, TradeHoldDurationsResultModel>();
-
+            CreateSteamWebResponseMap<GetServerListContainer, GetServerListResponse>();
         }
 
         private SteamWebResponse<TDestination> ConstructSteamWebResponse<TSource, TDestination>(ISteamWebResponse<TSource> response, ResolutionContext context)

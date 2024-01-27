@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Steam.Models.GameServers;
 using SteamWebAPI2.Models.GameServers;
+using SteamWebAPI2.Models.SteamPlayer;
 using SteamWebAPI2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -138,6 +139,21 @@ namespace SteamWebAPI2.Interfaces
             List<SteamWebRequestParameter> parameters = new List<SteamWebRequestParameter>();
             parameters.AddIfHasValue(steamIds, "server_steamids");
             var steamWebResponse = await steamWebInterface.GetAsync<dynamic>("GetServerIPsBySteamID", 1, parameters);
+            return steamWebResponse;
+        }
+
+        public async Task<ISteamWebResponse<GetServerListContainer>> GetServerListAsync(string filter, UInt32? limit)
+        {
+            List<SteamWebRequestParameter> parameters = new List<SteamWebRequestParameter>();
+            parameters.AddIfHasValue(filter, "filter");
+            parameters.AddIfHasValue(limit, "limit");
+            var steamWebResponse = await steamWebInterface.GetAsync<GetServerListContainer>("GetServerList", 1, parameters);
+
+            // broken mapper issues
+            //var steamWebResponseModel = mapper.Map<
+            //    ISteamWebResponse<GetServerListContainer>,
+            //    ISteamWebResponse<GetServerListModel>>(steamWebResponse);
+
             return steamWebResponse;
         }
     }
